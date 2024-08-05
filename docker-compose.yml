@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres
+    container_name: bangsoal-db
+    environment:
+      POSTGRES_USER: bangsoal
+      POSTGRES_PASSWORD: bangsoal
+      POSTGRES_DB: bangsoal-db
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    container_name: nestjs_app
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USER: bangsoal
+      DATABASE_PASSWORD: bangsoal
+      DATABASE_NAME: bangsoal-db
+      JWT_SECRET: bang
+    ports:
+      - "5500:5500"
+    depends_on:
+      - db
+    links:
+      - db
+    command: npm run start:prod
