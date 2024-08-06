@@ -16,6 +16,6 @@ async function bootstrap() {
 
   console.log('Swagger setup complete. Listening on port 5500');
   app.enableCors();
-  await app.listen(5500);
+  await app.listen(process.env.PORT || 5500, "0.0.0.0");
 }
 bootstrap();
