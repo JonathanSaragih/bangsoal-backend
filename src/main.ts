@@ -15,6 +15,7 @@ async function bootstrap() {
   SwaggerModule.setup('api-docs', app, document);
 
   console.log('Swagger setup complete. Listening on port 5500');
+  app.enableCors();
   await app.listen(5500);
 }
 bootstrap();
